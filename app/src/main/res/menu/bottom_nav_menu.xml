@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<group>
+    <item
+        android:id="@+id/homeFragment"
+        android:title="@string/home"
+        android:icon="@drawable/baseline_home_filled_24"/>
+
+    <item
+        android:id="@+id/searchFragment"
+        android:title="@string/search"
+        android:icon="@drawable/outline_manage_search_24"/>
+
+    <item
+        android:id="@+id/ticketFragment"
+        android:title="@string/ticket"
+        android:icon="@drawable/baseline_local_movies_24"/>
+
+    <item
+        android:id="@+id/accountFragment"
+        android:title="@string/account"
+        android:icon="@drawable/baseline_account_circle_24"/>
+</group>
+</menu>

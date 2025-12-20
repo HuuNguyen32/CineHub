@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "534854102786",
+    "project_id": "cinehub-6b146",
+    "storage_bucket": "cinehub-6b146.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:534854102786:android:06abc957c880cb4711dc1b",
+        "android_client_info": {
+          "package_name": "nhn.ntech.cinehub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA47YqqwPlbtCl3r0Z3YxQMECEDVRSKO9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

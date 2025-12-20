@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">CineHub</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Trang chủ</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="ticket">Đặt vé</string>
+    <string name="account">Tài khoản</string>
+    <string name="btn_continue">Continue</string>
+    <string name="content_splash1">All you need is a connected device. Dive into cinematic experiences at your fingertips, from thrilling action to heartfelt stories</string>
+    <string name="title_splash1">Watching can be from anywhere</string>
+    <string name="content_splash2">Experience every punch, every spark, every heroic moment right from your screen. Your favorite action-packed adventures are just a tap away</string>
+    <string name="title_splash2">Feel the Stream, Live the Dream</string>
+    <string name="content_splash3">From legendary heroes to iconic villains, explore the universe of stories you love all in one place. Stream your passions, anytime</string>
+    <string name="title_splash3">All Your Love, All in One Stream</string>
+    <string name="btn_get_started">Get Started</string>
+</resources>

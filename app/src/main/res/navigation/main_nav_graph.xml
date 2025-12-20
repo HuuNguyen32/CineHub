@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_nav_graph"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="nhn.ntech.cinehub.presentation.views.home.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" >
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="nhn.ntech.cinehub.presentation.views.home.SearchFragment"
+        android:label="@string/search"
+        tools:layout="@layout/fragment_search" >
+    </fragment>
+    <fragment
+        android:id="@+id/ticketFragment"
+        android:name="nhn.ntech.cinehub.presentation.views.home.TicketFragment"
+        android:label="@string/ticket"
+        tools:layout="@layout/fragment_ticket" >
+    </fragment>
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="nhn.ntech.cinehub.presentation.views.home.AccountFragment"
+        android:label="@string/account"
+        tools:layout="@layout/fragment_account" >
+    </fragment>
+</navigation>
