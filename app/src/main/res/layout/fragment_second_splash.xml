@@ -8,10 +8,9 @@
     tools:context=".presentation.views.splash.SecondSplashFragment">
 
     <View
-        android:id="@+id/backgroundOverlay"
+        android:id="@+id/backgroundOverlay2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_gradient_overlay"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +45,7 @@
             android:textAlignment="center"/>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSplash2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_48sdp"
             android:text="@string/btn_continue"
