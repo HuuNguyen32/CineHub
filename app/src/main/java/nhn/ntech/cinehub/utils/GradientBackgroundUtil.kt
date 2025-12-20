@@ -16,6 +16,7 @@ object GradientBackgroundUtil {
             "#B30B1D30".toColorInt(), // Mốc 69% (Đậm 70%)
             "#FF0B1D30".toColorInt()  // Mốc 95% (Đậm 100%)
         )
+
         val positions = floatArrayOf(0.07f, 0.50f, 0.69f, 0.95f)
 
         val paintDrawable = PaintDrawable().apply {
