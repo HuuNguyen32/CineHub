@@ -15,4 +15,16 @@
     <string name="title_splash3">All Your Love, All in One Stream</string>
     <string name="btn_get_started">Get Started</string>
     <string name="sign_in">Sign In</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="don_t_have_account">Don\'t have an account?<font color="#61C8C2"> Sign Up</font></string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="continue_with_apple">Continue with Apple</string>
+    <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="error_input_password">Incorrect password. Please reenter your password and try again. If the problem persists, try resetting your password by click \'Forget Password?\'</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="birthday">Birthday</string>
+    <string name="example_example_com">example@example.com</string>
+    <string name="terms">By click the agree and continue button, you\'re agree to Movees\' <font color="#000000"><b>Terms and Service</b></font> and acknowledge the <font color="#000000"><b>Privacy and Policy</b></font></string>
 </resources>

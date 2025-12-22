@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SocialButtonStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/_48sdp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/black_outline_btn_bg</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item> </style>
+
+    <style name="SocialButtonTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/_8sdp</item>
+        <item name="android:textColor">@color/gray_100</item>
+        <item name="android:textSize">@dimen/_14sdp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+</resources>
