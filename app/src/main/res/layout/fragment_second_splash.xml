@@ -50,7 +50,7 @@
             android:layout_height="@dimen/_48sdp"
             android:text="@string/btn_continue"
             android:textSize="@dimen/_15sdp"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:textAllCaps="false"
             android:background="@drawable/btn_bg"
             android:textColor="@color/white"
