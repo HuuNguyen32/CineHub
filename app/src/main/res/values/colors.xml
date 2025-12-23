@@ -15,9 +15,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="theme_color">#FF2176FF</color>
     <color name="theme_color_8">#142176FF</color>
+    <color name="gray_10">#FFE1E1E2</color>
     <color name="gray_20">#FFC7C8CA</color>
     <color name="gray_70">#FF4C4E55</color>
     <color name="gray_80">#FF34363E</color>
     <color name="gray_100">#FF02050F</color>
     <color name="gray_light">#FFD9D9D9</color>
+    <color name="primary">#FF61C8C2</color>
 </resources>

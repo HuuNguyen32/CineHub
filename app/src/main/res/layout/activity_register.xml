@@ -179,7 +179,7 @@
                 android:textSize="@dimen/_10sdp" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layoutPassword"
+                android:id="@+id/layoutConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
@@ -188,7 +188,7 @@
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtPassword"
+                    android:id="@+id/edtConfirmPassword"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_48sdp"
                     android:background="@drawable/edt_bg"
@@ -196,7 +196,7 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
             <TextView
-                android:id="@+id/txtErrorPassword"
+                android:id="@+id/txtErrorConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/error_input_password"
