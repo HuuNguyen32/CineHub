@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CineHub">
         <activity
+            android:name=".presentation.views.auth.ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.views.splash.SpashActivity"
             android:exported="true">
             <intent-filter>
@@ -28,12 +31,11 @@
             android:exported="false" />
         <activity
             android:name=".presentation.views.auth.LoginActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".presentation.views.home.MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>

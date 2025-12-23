@@ -27,4 +27,6 @@
     <string name="birthday">Birthday</string>
     <string name="example_example_com">example@example.com</string>
     <string name="terms">By click the agree and continue button, you\'re agree to Movees\' <font color="#000000"><b>Terms and Service</b></font> and acknowledge the <font color="#000000"><b>Privacy and Policy</b></font></string>
+    <string name="forgot_password2">Forgot Password</string>
+    <string name="forgot_password_content">Input your linked email to your Movees account below, we’ll send you a link</string>
 </resources>
