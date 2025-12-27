@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import nhn.ntech.cinehub.R
+import nhn.ntech.cinehub.data.constant.ConstantApi
 
-class PopularMovieAdapter(val imgList: MutableList<String>) :
-    RecyclerView.Adapter<PopularMovieAdapter.PopularMovieViewHolder>() {
+class PopularMovieAdapter : RecyclerView.Adapter<PopularMovieAdapter.PopularMovieViewHolder>() {
+
+    private val imgList: MutableList<String> = mutableListOf()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -28,14 +30,14 @@ class PopularMovieAdapter(val imgList: MutableList<String>) :
 //        holder.image.setImageResource(imgList[position])
 
         Glide.with(holder.itemView.context)
-            .load(imgList[position])
-            .apply(RequestOptions.centerInsideTransform())
+            .load(ConstantApi.BASE_URL_IMAGE + imgList[position])
+            .apply(RequestOptions.centerCropTransform())
             .into(holder.image)
     }
 
     override fun getItemCount(): Int = imgList.size
 
-    fun setData(imgList: MutableList<String>){
+    fun setData(imgList: List<String>){
         this.imgList.clear()
         this.imgList.addAll(imgList)
         notifyDataSetChanged()

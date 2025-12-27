@@ -40,9 +40,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 //        val listImg = mutableListOf(R.drawable.movie1, R.drawable.movie2, R.drawable.movie3, R.drawable.movie4, R.drawable.movie5)
-        adapter = PopularMovieAdapter(emptyList())
+        adapter = PopularMovieAdapter()
         binding.vpPopularMovie.adapter = adapter
-        binding.vpPopularMovie.setCurrentItem(1, false)
         setupCarousel()
         val dotsIndicator = binding.dotIndicator
         dotsIndicator.attachTo(binding.vpPopularMovie)
@@ -55,8 +54,12 @@ class HomeFragment : Fragment() {
         movieViewModel.popularMovies.observe(viewLifecycleOwner){
             response ->
             val popularMovies = response.data?.results ?: emptyList()
-            val popularMovieImgList = popularMovies.map { it.backdropPath }.toMutableList()
+            if (popularMovies.isNotEmpty()){
+                binding.popularProgressBar.visibility = View.GONE
+            }
+            val popularMovieImgList = popularMovies.map { it.backdropPath }.take(5).toMutableList()
             adapter.setData(popularMovieImgList)
+            binding.vpPopularMovie.setCurrentItem(1, false)
         }
     }
 
