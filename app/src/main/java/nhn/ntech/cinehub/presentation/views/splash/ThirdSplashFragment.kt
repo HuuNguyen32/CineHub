@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import dagger.hilt.android.AndroidEntryPoint
 import nhn.ntech.cinehub.R
 import nhn.ntech.cinehub.databinding.FragmentThirdSplashBinding
 import nhn.ntech.cinehub.presentation.views.auth.LoginActivity
 import nhn.ntech.cinehub.utils.GradientBackgroundUtil
 import kotlin.jvm.java
 
+@AndroidEntryPoint
 class ThirdSplashFragment : Fragment() {
 
     private lateinit var binding: FragmentThirdSplashBinding

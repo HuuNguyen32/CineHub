@@ -17,6 +17,7 @@
     <color name="theme_color_8">#142176FF</color>
     <color name="gray_10">#FFE1E1E2</color>
     <color name="gray_20">#FFC7C8CA</color>
+    <color name="gray_50">#FF7D7E83</color>
     <color name="gray_70">#FF4C4E55</color>
     <color name="gray_80">#FF34363E</color>
     <color name="gray_100">#FF02050F</color>

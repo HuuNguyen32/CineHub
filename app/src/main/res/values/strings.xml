@@ -32,4 +32,6 @@
     <string name="hi_nguyen">Hi, Nguyen</string>
     <string name="let_s_watch_a_movie">Let\'s watch a movie</string>
     <string name="popular_movie_title">Popular Movie</string>
+    <string name="top_movies_title">Top Movies</string>
+    <string name="all">All</string>
 </resources>

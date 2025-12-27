@@ -10,11 +10,13 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 import nhn.ntech.cinehub.R
 import nhn.ntech.cinehub.databinding.ActivitySpashBinding
 import nhn.ntech.cinehub.presentation.adapters.SplashAdapter
 import nhn.ntech.cinehub.utils.OnNavigationListener
 
+@AndroidEntryPoint
 class SpashActivity : AppCompatActivity(), OnNavigationListener {
 
     private lateinit var binding: ActivitySpashBinding

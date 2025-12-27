@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.views.home.HomeFragment">
 
@@ -10,7 +11,8 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_16sdp"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingBottom="@dimen/_16sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -80,7 +82,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="ScrollViewCount">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint"
@@ -93,13 +96,39 @@
                 android:layout_height="wrap_content"
                 android:text="@string/popular_movie_title"
                 android:textStyle="bold"
+                android:textColor="@color/gray_100"
                 android:textSize="@dimen/_13sdp"
                 android:layout_marginStart="@dimen/_16sdp"
                 app:layout_constraintTop_toTopOf="@id/constraint"
                 app:layout_constraintStart_toStartOf="parent"/>
 
+            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                android:id="@+id/dotIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_8sdp"
+                app:dotsColor="@color/gray_20"
+                app:dotsCornerRadius="@dimen/_4sdp"
+                app:dotsSize="@dimen/_8sdp"
+                app:dotsSpacing="@dimen/_2sdp"
+                app:dotsWidthFactor="2.5"
+                app:selectedDotColor="@color/primary"
+                android:layout_marginEnd="@dimen/_16sdp"
+                app:layout_constraintTop_toTopOf="@id/txtPopularMovie"
+                app:layout_constraintBottom_toBottomOf="@id/txtPopularMovie"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:progressMode="true"/>
+
+            <ProgressBar
+                android:id="@+id/popularProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/vpPopularMovie"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/vpPopularMovie"/>
+
             <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPagerPopularMovie"
+                android:id="@+id/vpPopularMovie"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
                 android:layout_marginTop="@dimen/_12sdp"
@@ -107,22 +136,51 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+            <TextView
+                android:id="@+id/txtTopMovies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:dotsColor="@color/gray_20"
-                app:dotsCornerRadius="@dimen/_4sdp"
-                app:dotsSize="@dimen/_8sdp"
-                app:dotsSpacing="@dimen/_2sdp"
-                app:dotsWidthFactor="2.5"
-                app:selectedDotColor="@color/primary"
-                app:layout_constraintTop_toBottomOf="@id/viewPagerPopularMovie"
+                android:text="@string/top_movies_title"
+                android:textStyle="bold"
+                android:textSize="@dimen/_13sdp"
+                android:textColor="@color/gray_100"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_22sdp"
+                app:layout_constraintTop_toBottomOf="@id/vpPopularMovie"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/txtSeeAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See All"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_22sdp"
+                app:layout_constraintTop_toBottomOf="@id/vpPopularMovie"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCategories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_16sdp"
+                app:layout_constraintTop_toBottomOf="@id/txtTopMovies"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:progressMode="true"/>
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMovies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                app:layout_constraintTop_toBottomOf="@id/rvCategories"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </androidx.core.widget.NestedScrollView>
 

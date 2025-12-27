@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import dagger.hilt.android.AndroidEntryPoint
 import nhn.ntech.cinehub.R
 import nhn.ntech.cinehub.databinding.FragmentSecondSplashBinding
 import nhn.ntech.cinehub.utils.GradientBackgroundUtil
 import nhn.ntech.cinehub.utils.OnNavigationListener
 
+@AndroidEntryPoint
 class SecondSplashFragment : Fragment() {
 
     private lateinit var binding: FragmentSecondSplashBinding

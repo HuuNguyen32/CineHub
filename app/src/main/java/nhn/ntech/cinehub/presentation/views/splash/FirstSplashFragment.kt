@@ -14,9 +14,11 @@ import android.view.ViewGroup
 import nhn.ntech.cinehub.R
 import nhn.ntech.cinehub.databinding.FragmentFirstSplashBinding
 import androidx.core.graphics.toColorInt
+import dagger.hilt.android.AndroidEntryPoint
 import nhn.ntech.cinehub.utils.GradientBackgroundUtil
 import nhn.ntech.cinehub.utils.OnNavigationListener
 
+@AndroidEntryPoint
 class FirstSplashFragment : Fragment() {
 
     private lateinit var binding: FragmentFirstSplashBinding
