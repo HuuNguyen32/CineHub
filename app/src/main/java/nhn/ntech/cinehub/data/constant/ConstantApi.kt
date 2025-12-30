@@ -13,4 +13,6 @@ object ConstantApi {
     const val POPULAR_MOVIE = "movie/popular"
 
     const val TOP_RATED_MOVIE = "movie/top_rated"
+
+    const val GENRES_MOVIE = "genre/movie/list"
 }

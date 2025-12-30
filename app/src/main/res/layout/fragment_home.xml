@@ -120,7 +120,7 @@
 
             <ProgressBar
                 android:id="@+id/popularProgressBar"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="@id/vpPopularMovie"
                 app:layout_constraintStart_toStartOf="parent"
@@ -161,22 +161,41 @@
                 app:layout_constraintTop_toBottomOf="@id/vpPopularMovie"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
+            <ProgressBar
+                android:id="@+id/genreProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/rvGenres"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/rvGenres"/>
+
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvCategories"
+                android:id="@+id/rvGenres"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/_16sdp"
+                android:overScrollMode="never"
                 app:layout_constraintTop_toBottomOf="@id/txtTopMovies"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
+            <ProgressBar
+                android:id="@+id/movieProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/rvMovies"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/rvMovies"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvMovies"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_250sdp"
                 android:layout_marginTop="@dimen/_16sdp"
-                app:layout_constraintTop_toBottomOf="@id/rvCategories"
+                app:layout_constraintTop_toBottomOf="@id/rvGenres"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 

@@ -16,4 +16,8 @@ class MovieRepository @Inject constructor(
     suspend fun getAllTopRatedMovies() = apiCall {
         apiServices.getTopRatedMovies()
     }
+
+    suspend fun getAllGenres() = apiCall {
+        apiServices.getGenres()
+    }
 }

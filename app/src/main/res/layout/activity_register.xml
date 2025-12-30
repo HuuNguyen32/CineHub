@@ -225,7 +225,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_48sdp"
             android:background="@drawable/btn_bg"
-            android:text="Agree and continue"
+            android:text="@string/agree_and_continue"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/_15sdp"

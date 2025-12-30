@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
 import nhn.ntech.cinehub.R
 import nhn.ntech.cinehub.databinding.FragmentHomeBinding
+import nhn.ntech.cinehub.presentation.adapters.GenreAdapter
+import nhn.ntech.cinehub.presentation.adapters.GenreItemDecoration
 import nhn.ntech.cinehub.presentation.adapters.HorizontalMarginItemDecoration
 import nhn.ntech.cinehub.presentation.adapters.PopularMovieAdapter
 import nhn.ntech.cinehub.presentation.viewmodels.MovieViewModel
@@ -20,7 +23,8 @@ import java.util.Collections.emptyList
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var adapter: PopularMovieAdapter
+    private lateinit var popularMovieAdapter: PopularMovieAdapter
+    private lateinit var genreAdapter: GenreAdapter
     private val movieViewModel: MovieViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,16 +44,31 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 //        val listImg = mutableListOf(R.drawable.movie1, R.drawable.movie2, R.drawable.movie3, R.drawable.movie4, R.drawable.movie5)
-        adapter = PopularMovieAdapter()
-        binding.vpPopularMovie.adapter = adapter
-        setupCarousel()
-        val dotsIndicator = binding.dotIndicator
-        dotsIndicator.attachTo(binding.vpPopularMovie)
-        initData()
+        setPopular()
+        initPopular()
+        setGenre()
+        initGenres()
 
     }
 
-    private fun initData(){
+    private fun setPopular() {
+        popularMovieAdapter = PopularMovieAdapter()
+        binding.vpPopularMovie.adapter = popularMovieAdapter
+        setupCarousel()
+        val dotsIndicator = binding.dotIndicator
+        dotsIndicator.attachTo(binding.vpPopularMovie)
+    }
+
+    private fun setGenre() {
+        val sidePadding = resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._16sdp)
+        genreAdapter = GenreAdapter()
+        binding.rvGenres.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        binding.rvGenres.adapter = genreAdapter
+        binding.rvGenres.addItemDecoration(GenreItemDecoration(sidePadding))
+    }
+
+    private fun initPopular(){
         movieViewModel.getPopularMovies()
         movieViewModel.popularMovies.observe(viewLifecycleOwner){
             response ->
@@ -58,10 +77,31 @@ class HomeFragment : Fragment() {
                 binding.popularProgressBar.visibility = View.GONE
             }
             val popularMovieImgList = popularMovies.map { it.backdropPath }.take(5).toMutableList()
-            adapter.setData(popularMovieImgList)
+            popularMovieAdapter.setData(popularMovieImgList)
             binding.vpPopularMovie.setCurrentItem(1, false)
         }
     }
+
+    private fun initGenres(){
+        movieViewModel.getGenres()
+        movieViewModel.genres.observe(viewLifecycleOwner){
+            response ->
+            val genres = response.data?.genres ?: emptyList()
+            if (genres.isNotEmpty()){
+                binding.genreProgressBar.visibility = View.GONE
+            }
+            val genresList = genres.map { it.name }.toMutableList()
+            genresList.add(0, getString(R.string.all))
+            genreAdapter.setData(genresList)
+        }
+    }
+
+    private fun initTopRated(){
+
+    }
+
+
+
 
     private fun setupCarousel(){
 

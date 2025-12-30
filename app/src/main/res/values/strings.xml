@@ -34,4 +34,9 @@
     <string name="popular_movie_title">Popular Movie</string>
     <string name="top_movies_title">Top Movies</string>
     <string name="all">All</string>
+    <string name="create_profile">Create Profile</string>
+    <string name="profile_name">Profile Name</string>
+    <string name="vd_nguyenabc">VD:NguyenABC....</string>
+    <string name="agree_and_continue">Agree and continue</string>
+    <string name="create_and_start">Create and start</string>
 </resources>
