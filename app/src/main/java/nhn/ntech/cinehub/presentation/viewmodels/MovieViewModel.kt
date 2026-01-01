@@ -8,6 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import nhn.ntech.cinehub.data.model.genre.Genre
 import nhn.ntech.cinehub.data.model.genre.GenreResponse
 import nhn.ntech.cinehub.data.model.movies.MovieResponse
 import nhn.ntech.cinehub.data.repository.MovieRepository
@@ -52,4 +53,5 @@ class MovieViewModel @Inject constructor(
             _genres.postValue(response)
         }
     }
+
 }

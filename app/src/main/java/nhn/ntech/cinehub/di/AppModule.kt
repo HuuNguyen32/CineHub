@@ -1,8 +1,11 @@
 package nhn.ntech.cinehub.di
 
+import android.content.Context
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import nhn.ntech.cinehub.data.constant.ConstantApi
 import nhn.ntech.cinehub.data.source.remote.ApiServices
@@ -21,7 +24,9 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideHttpClient(): OkHttpClient{
+    fun provideHttpClient(
+        @ApplicationContext context: Context
+    ): OkHttpClient{
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
@@ -36,6 +41,7 @@ object AppModule {
 
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(ChuckerInterceptor(context = context))
             .addInterceptor(authInterceptor)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)

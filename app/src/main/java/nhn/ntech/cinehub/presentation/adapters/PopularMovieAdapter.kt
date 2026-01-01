@@ -26,9 +26,6 @@ class PopularMovieAdapter : RecyclerView.Adapter<PopularMovieAdapter.PopularMovi
         holder: PopularMovieAdapter.PopularMovieViewHolder,
         position: Int,
     ) {
-        // tạm thời để test
-//        holder.image.setImageResource(imgList[position])
-
         Glide.with(holder.itemView.context)
             .load(ConstantApi.BASE_URL_IMAGE + imgList[position])
             .apply(RequestOptions.centerCropTransform())

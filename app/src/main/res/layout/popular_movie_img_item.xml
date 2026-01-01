@@ -11,7 +11,7 @@
         android:adjustViewBounds="true"
         android:clipToOutline="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/movie1"/>
+        android:src="@drawable/ic_launcher_background"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

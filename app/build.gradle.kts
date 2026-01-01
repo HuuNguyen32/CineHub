@@ -51,6 +51,10 @@ android {
 
 dependencies {
 
+    // Chucker
+    debugImplementation("com.github.chuckerteam.chucker:library:4.2.0")
+    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.2.0")
+
     // Indicator
     implementation("com.tbuonomo:dotsindicator:5.1.0")
 

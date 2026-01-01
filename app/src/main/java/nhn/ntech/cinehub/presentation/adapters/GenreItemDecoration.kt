@@ -5,7 +5,8 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 class GenreItemDecoration(
-    private val sidePadding: Int
+    private val sidePadding: Int,
+    private val itemSpacing: Int?,
 ) : RecyclerView.ItemDecoration()
 {
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
@@ -20,6 +21,10 @@ class GenreItemDecoration(
         // Nếu là item CUỐI CÙNG: Gán padding sát lề phải
         if (position == itemCount - 1) {
             outRect.right = sidePadding
+        }
+
+        if (itemSpacing != null){
+            outRect.right = itemSpacing
         }
     }
 }
