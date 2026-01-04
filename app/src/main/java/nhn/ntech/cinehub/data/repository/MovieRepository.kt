@@ -20,4 +20,12 @@ class MovieRepository @Inject constructor(
     suspend fun getAllGenres() = apiCall {
         apiServices.getGenres()
     }
+
+    suspend fun getDetailMovie(movieId: Int) = apiCall {
+        apiServices.getDetailMovie(movieId)
+    }
+
+    suspend fun getRecommendations(movieId: Int) = apiCall {
+        apiServices.getRecommendations(movieId)
+    }
 }

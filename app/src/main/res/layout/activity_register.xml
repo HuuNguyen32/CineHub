@@ -5,19 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:padding="@dimen/_16sdp"
     android:background="@color/white">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
-        android:padding="@dimen/_16sdp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".presentation.views.auth.RegisterActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_16sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">

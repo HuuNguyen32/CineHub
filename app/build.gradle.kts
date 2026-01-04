@@ -4,6 +4,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     kotlin("kapt")
     id("com.google.gms.google-services")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -50,7 +51,6 @@ android {
 }
 
 dependencies {
-
     // Chucker
     debugImplementation("com.github.chuckerteam.chucker:library:4.2.0")
     releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.2.0")

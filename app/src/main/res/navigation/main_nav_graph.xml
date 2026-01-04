@@ -8,7 +8,10 @@
         android:id="@+id/homeFragment"
         android:name="nhn.ntech.cinehub.presentation.views.home.HomeFragment"
         android:label="@string/home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_detailMovieFragment"
+            app:destination="@id/detailMovieFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -27,5 +30,14 @@
         android:name="nhn.ntech.cinehub.presentation.views.home.AccountFragment"
         android:label="@string/account"
         tools:layout="@layout/fragment_account" >
+    </fragment>
+    <fragment
+        android:id="@+id/detailMovieFragment"
+        android:name="nhn.ntech.cinehub.presentation.views.details.DetailMovieFragment"
+        android:label="fragment_detail_movie"
+        tools:layout="@layout/fragment_detail_movie">
+        <argument
+            android:name="movieId"
+            app:argType="integer"/>
     </fragment>
 </navigation>

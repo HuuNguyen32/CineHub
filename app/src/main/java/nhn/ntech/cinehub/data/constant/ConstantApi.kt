@@ -17,4 +17,8 @@ object ConstantApi {
     const val GENRES_MOVIE = "genre/movie/list"
 
     const val NOW_PLAYING = "movie/now_playing"
+
+    const val DETAIL = "movie/{movie_id}"
+
+    const val RECOMMENDATIONS = "movie/{movie_id}/recommendations"
 }

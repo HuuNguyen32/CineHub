@@ -9,8 +9,9 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import nhn.ntech.cinehub.R
+import nhn.ntech.cinehub.utils.OnItemMovieListener
 
-class GenreAdapter : RecyclerView.Adapter<GenreAdapter.GenreViewHolder>() {
+class GenreAdapter(val listener: OnItemMovieListener) : RecyclerView.Adapter<GenreAdapter.GenreViewHolder>() {
 
     private val genres: MutableList<String> = mutableListOf()
     private var selectedPosition = 0
@@ -45,6 +46,7 @@ class GenreAdapter : RecyclerView.Adapter<GenreAdapter.GenreViewHolder>() {
                selectedPosition = holder.bindingAdapterPosition
                notifyItemChanged(oldSelectedPosition)
                notifyItemChanged(selectedPosition)
+               listener.onItemClick(genres[selectedPosition])
            }
 
         }

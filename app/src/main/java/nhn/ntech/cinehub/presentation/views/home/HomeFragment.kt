@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
 import nhn.ntech.cinehub.R
+import nhn.ntech.cinehub.data.model.genre.Genre
+import nhn.ntech.cinehub.data.model.movies.Result
 import nhn.ntech.cinehub.databinding.FragmentHomeBinding
 import nhn.ntech.cinehub.presentation.adapters.GenreAdapter
 import nhn.ntech.cinehub.presentation.adapters.GenreItemDecoration
@@ -19,17 +22,19 @@ import nhn.ntech.cinehub.presentation.adapters.PopularAdapter
 import nhn.ntech.cinehub.presentation.adapters.PopularMovieAdapter
 import nhn.ntech.cinehub.presentation.adapters.TopRateMovieAdapter
 import nhn.ntech.cinehub.presentation.viewmodels.MovieViewModel
-import nhn.ntech.cinehub.utils.GenreMapper
+import nhn.ntech.cinehub.utils.OnItemMovieListener
 import java.util.Collections.emptyList
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), OnItemMovieListener {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var popularMovieAdapter: PopularMovieAdapter
     private lateinit var popularAdapter: PopularAdapter
     private lateinit var genreAdapter: GenreAdapter
     private lateinit var topRateMovieAdapter: TopRateMovieAdapter
+    private var genreList: List<Genre> = emptyList()
+    private var topRateList: List<Result> = emptyList()
     private val movieViewModel: MovieViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +64,7 @@ class HomeFragment : Fragment() {
     private fun setTopRated() {
         val sidePadding = resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._16sdp)
         val itemSpacing = resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._12sdp)
-        topRateMovieAdapter = TopRateMovieAdapter()
+        topRateMovieAdapter = TopRateMovieAdapter(this)
         binding.rvMovies.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         binding.rvMovies.adapter = topRateMovieAdapter
@@ -67,8 +72,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setPopular() {
-        val sidePadding = resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._16sdp)
-        val itemSpacing = resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._12sdp)
         // set carousel
         popularMovieAdapter = PopularMovieAdapter()
         binding.vpPopularMovie.adapter = popularMovieAdapter
@@ -77,7 +80,7 @@ class HomeFragment : Fragment() {
         dotsIndicator.attachTo(binding.vpPopularMovie)
 
         // set Popular
-        popularAdapter = PopularAdapter()
+        popularAdapter = PopularAdapter(this)
         binding.rvRecommend.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.rvRecommend.adapter = popularAdapter
@@ -85,7 +88,7 @@ class HomeFragment : Fragment() {
 
     private fun setGenre() {
         val sidePadding = resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._16sdp)
-        genreAdapter = GenreAdapter()
+        genreAdapter = GenreAdapter(this)
         binding.rvGenres.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         binding.rvGenres.adapter = genreAdapter
@@ -99,11 +102,14 @@ class HomeFragment : Fragment() {
             val popularMovies = response.data?.results ?: emptyList()
             if (popularMovies.isNotEmpty()){
                 binding.popularProgressBar.visibility = View.GONE
+                val popularMovieImgList = popularMovies.map { it.backdropPath }.take(5).toMutableList()
+                popularMovieAdapter.setData(popularMovieImgList)
+                binding.vpPopularMovie.setCurrentItem(1, false)
+
+                binding.recommendProgressBar.visibility = View.GONE
+                val movies = movieViewModel.convertFactory(popularMovies, genreList)
+                popularAdapter.setData(movies)
             }
-            val popularMovieImgList = popularMovies.map { it.backdropPath }.take(5).toMutableList()
-            popularMovieAdapter.setData(popularMovieImgList)
-            popularAdapter.setData(popularMovies)
-            binding.vpPopularMovie.setCurrentItem(1, false)
         }
     }
 
@@ -114,10 +120,11 @@ class HomeFragment : Fragment() {
             val genres = response.data?.genres ?: emptyList()
             if (genres.isNotEmpty()){
                 binding.genreProgressBar.visibility = View.GONE
+                genreList = genres
+                val genresList = genres.map { it.name }.toMutableList()
+                genresList.add(0, getString(R.string.all))
+                genreAdapter.setData(genresList)
             }
-            val genresList = genres.map { it.name }.toMutableList()
-            genresList.add(0, getString(R.string.all))
-            genreAdapter.setData(genresList)
         }
     }
 
@@ -128,12 +135,11 @@ class HomeFragment : Fragment() {
             val topRates = response.data?.results ?: emptyList()
             if (topRates != null){
                 binding.movieProgressBar.visibility = View.GONE
+                topRateList = movieViewModel.convertFactory(topRates, genreList)
+                topRateMovieAdapter.setData(topRates)
             }
-            topRateMovieAdapter.setData(topRates)
         }
     }
-
-
 
 
     private fun setupCarousel(){
@@ -155,6 +161,23 @@ class HomeFragment : Fragment() {
             R.dimen.viewpager_current_item_horizontal_margin
         )
         binding.vpPopularMovie.addItemDecoration(itemDecoration)
+    }
+
+    override fun <T> onItemClick(item: T) {
+        if (item is String){
+            if (item == "All"){
+                topRateMovieAdapter.setData(topRateList)
+            }else{
+                val filterTopRates = if (topRateList.isNotEmpty()){
+                    topRateList.filter { it.genreNames.contains(item) }
+                }else emptyList()
+                topRateMovieAdapter.setData(filterTopRates)
+            }
+        }
+        if (item is Result){
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailMovieFragment(item.id)
+            findNavController().navigate(action)
+        }
     }
 
 

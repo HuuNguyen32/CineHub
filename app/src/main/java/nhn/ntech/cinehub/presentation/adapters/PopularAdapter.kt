@@ -11,9 +11,9 @@ import com.bumptech.glide.request.RequestOptions
 import nhn.ntech.cinehub.R
 import nhn.ntech.cinehub.data.constant.ConstantApi
 import nhn.ntech.cinehub.data.model.movies.Result
-import nhn.ntech.cinehub.utils.GenreMapper
+import nhn.ntech.cinehub.utils.OnItemMovieListener
 
-class PopularAdapter : RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() {
+class PopularAdapter(val listener: OnItemMovieListener) : RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() {
 
     private val popularList: MutableList<Result> = mutableListOf()
 
@@ -29,12 +29,16 @@ class PopularAdapter : RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() 
     override fun onBindViewHolder(holder: PopularAdapter.PopularViewHolder, position: Int) {
         val item = popularList[position]
         holder.txtTitle.text = item.title
-        holder.txtGenre.text = item.genreIds.toString()
+        holder.txtGenre.text = item.genreNames.joinToString(", ")
         holder.txtRate.text = item.voteAverage.toString()
         Glide.with(holder.itemView.context)
             .load(ConstantApi.BASE_URL_IMAGE + item.posterPath)
             .centerCrop()
             .into(holder.imgPoster)
+
+        holder.itemView.setOnClickListener {
+            listener.onItemClick(item = item)
+        }
     }
 
     override fun getItemCount(): Int = popularList.size

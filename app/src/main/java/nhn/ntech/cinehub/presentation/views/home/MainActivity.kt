@@ -1,6 +1,7 @@
 package nhn.ntech.cinehub.presentation.views.home
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -32,6 +33,14 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigationView = binding.bottomNav
         bottomNavigationView.setupWithNavController(navController = navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when(destination.id){
+                R.id.detailMovieFragment -> bottomNavigationView.visibility = View.GONE
+                else -> bottomNavigationView.visibility = View.VISIBLE
+            }
+        }
+
     }
 
     private fun setPadding() {

@@ -10,8 +10,11 @@ import com.bumptech.glide.Glide
 import nhn.ntech.cinehub.R
 import nhn.ntech.cinehub.data.constant.ConstantApi
 import nhn.ntech.cinehub.data.model.movies.Result
+import nhn.ntech.cinehub.utils.OnItemMovieListener
 
-class TopRateMovieAdapter : RecyclerView.Adapter<TopRateMovieAdapter.TopRateMovieViewHolder>() {
+class TopRateMovieAdapter(
+    private val listener: OnItemMovieListener
+) : RecyclerView.Adapter<TopRateMovieAdapter.TopRateMovieViewHolder>() {
 
     private val topRateMovies: MutableList<Result> = mutableListOf()
 
@@ -35,6 +38,10 @@ class TopRateMovieAdapter : RecyclerView.Adapter<TopRateMovieAdapter.TopRateMovi
             .load(ConstantApi.BASE_URL_IMAGE + item.posterPath)
             .centerCrop()
             .into(holder.imgPoster)
+
+        holder.itemView.setOnClickListener {
+            listener.onItemClick(item = item)
+        }
     }
 
     override fun getItemCount(): Int = topRateMovies.size
