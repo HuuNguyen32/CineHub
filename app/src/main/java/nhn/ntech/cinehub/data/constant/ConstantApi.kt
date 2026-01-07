@@ -21,4 +21,6 @@ object ConstantApi {
     const val DETAIL = "movie/{movie_id}"
 
     const val RECOMMENDATIONS = "movie/{movie_id}/recommendations"
+
+    const val BASE_URL_REALTIME_DB = "https://cinehub-6b146-default-rtdb.asia-southeast1.firebasedatabase.app/"
 }

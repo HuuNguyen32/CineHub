@@ -51,6 +51,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.firebase.database)
     // Chucker
     debugImplementation("com.github.chuckerteam.chucker:library:4.2.0")
     releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.2.0")

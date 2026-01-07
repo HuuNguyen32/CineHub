@@ -52,4 +52,9 @@
     <string name="buy_tickets">Buy tickets</string>
     <string name="overview">Overview</string>
     <string name="overview_exm">The Sound of Magic is a captivating South Korean drama series that blends fantasy and heartfelt storytelling. The series follows ...</string>
+    <string name="search_movie">Search Movie</string>
+    <string name="search_hint">Search....</string>
+    <string name="last_search">Last Search</string>
+    <string name="see_all">See All</string>
+    <string name="clear_all">Clear All</string>
 </resources>

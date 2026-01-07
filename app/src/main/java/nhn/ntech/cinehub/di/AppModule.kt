@@ -2,6 +2,9 @@ package nhn.ntech.cinehub.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,8 +28,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideHttpClient(
-        @ApplicationContext context: Context
-    ): OkHttpClient{
+        @ApplicationContext context: Context,
+    ): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
@@ -50,7 +53,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit{
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(ConstantApi.BASE_URL)
             .client(okHttpClient)
@@ -61,7 +64,25 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideApiServices(retrofit: Retrofit): ApiServices{
+    fun provideApiServices(retrofit: Retrofit): ApiServices {
         return retrofit.create(ApiServices::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providedFirebaseAuth(): FirebaseAuth {
+        return FirebaseAuth.getInstance()
+    }
+
+    @Provides
+    @Singleton
+    fun provideRealtimeDatabase(): FirebaseDatabase {
+        return FirebaseDatabase.getInstance(ConstantApi.BASE_URL_REALTIME_DB)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCurrentUser(auth: FirebaseAuth): FirebaseUser? {
+        return auth.currentUser
     }
 }
