@@ -32,18 +32,22 @@
 
         <TextView
             android:id="@+id/txtHiUsername"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/hi_nguyen"
             android:textColor="@color/black"
             android:textSize="@dimen/_13sdp"
             android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:layout_marginTop="@dimen/_3sdp"
             android:layout_marginStart="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="@+id/txtLetWatch"
             app:layout_constraintStart_toEndOf="@id/imgAvatar"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
+            android:id="@+id/txtLetWatch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/let_s_watch_a_movie"
@@ -55,7 +59,7 @@
             app:layout_constraintTop_toBottomOf="@id/txtHiUsername" />
 
         <ImageView
-            android:id="@+id/btnSearch"
+            android:id="@+id/btnLove"
             android:layout_width="@dimen/_22sdp"
             android:layout_height="@dimen/_22sdp"
             android:src="@drawable/ic_heart"
@@ -204,7 +208,7 @@
                 android:id="@+id/txtRecommend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/top_movies_title"
+                android:text="Recommends"
                 android:textStyle="bold"
                 android:textSize="@dimen/_13sdp"
                 android:textColor="@color/gray_100"

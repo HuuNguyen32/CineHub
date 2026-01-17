@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/_10sdp"
+    android:gravity="center_vertical"
+    android:background="?attr/selectableItemBackground">
+
+    <!-- Icon đồng hồ -->
+    <ImageView
+        android:id="@+id/imgHistory"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_clock"
+        android:tint="@color/gray_80"/>
+
+    <!-- Text từ khóa đã tra -->
+    <TextView
+        android:id="@+id/txtKeyword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="Avengers"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
+
+    <!-- Icon dấu X để xóa -->
+    <ImageView
+        android:id="@+id/imgDelete"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_remove"
+        android:tint="@color/black"/>
+</LinearLayout>

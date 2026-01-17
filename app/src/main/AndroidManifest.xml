@@ -17,13 +17,19 @@
         android:theme="@style/Theme.CineHub"
         tools:targetApi="33">
         <activity
+            android:name=".presentation.views.home.NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.views.home.BookingMovieActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.views.auth.CreateProfileActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.views.auth.ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.views.splash.SpashActivity"
+            android:name=".presentation.views.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,14 +43,14 @@
         <activity
             android:name=".presentation.views.auth.RegisterActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".presentation.views.auth.LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".presentation.views.home.MainActivity"
-            android:exported="true"/>
+            android:exported="false" />
     </application>
 
 </manifest>

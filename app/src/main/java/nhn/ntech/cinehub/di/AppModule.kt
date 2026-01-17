@@ -2,6 +2,7 @@ package nhn.ntech.cinehub.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.cloudinary.Cloudinary
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
@@ -11,6 +12,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import nhn.ntech.cinehub.data.constant.ConstantApi
+import nhn.ntech.cinehub.data.repository.MovieRepository
+import nhn.ntech.cinehub.data.repository.UserRepository
 import nhn.ntech.cinehub.data.source.remote.ApiServices
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -82,7 +85,28 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCurrentUser(auth: FirebaseAuth): FirebaseUser? {
-        return auth.currentUser
+    fun provideCloudinary(): Cloudinary {
+        val config: MutableMap<String, String> = HashMap()
+        config["cloud_name"] = "dvfqbtvfg"
+        config["api_key"] = "222267877922487"
+        config["api_secret"] = "C6KJJddKoOumwM30io6UGi3rZaE"
+        return Cloudinary(config)
     }
+
+
+    @Provides
+    @Singleton
+    fun provideUserRepository(
+        cloudinary: Cloudinary,
+        @ApplicationContext context: Context,
+        db: FirebaseDatabase
+    ): UserRepository = UserRepository(cloudinary, context, db)
+
+
+    @Provides
+    @Singleton
+    fun provideMovieRepository(
+        apiServices: ApiServices
+    ): MovieRepository = MovieRepository(apiServices)
+
 }

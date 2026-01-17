@@ -9,7 +9,6 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
-        android:padding="@dimen/_16sdp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.views.auth.CreateProfileActivity">
@@ -17,7 +16,8 @@
             android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -42,12 +42,17 @@
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
             android:src="@drawable/cprofile"
+            android:background="@drawable/circle_bg"
+            android:clipToOutline="true"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:layout_marginTop="@dimen/_42sdp"
             app:layout_constraintTop_toBottomOf="@id/linear"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
         
         <ImageView
+            android:id="@+id/imgCreate"
             android:layout_width="@dimen/_36sdp"
             android:layout_height="@dimen/_36sdp"
             android:src="@drawable/createp"
@@ -61,6 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_32sdp"
             android:orientation="vertical"
+            android:layout_marginHorizontal="@dimen/_20sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imgCreateProfile">
@@ -80,7 +86,7 @@
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtEmail"
+                    android:id="@+id/edtProfileName"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_48sdp"
                     android:background="@drawable/edt_bg"
@@ -99,7 +105,8 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_15sdp"
             android:textStyle="normal"
-            android:layout_marginBottom="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_32sdp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

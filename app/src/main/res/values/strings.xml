@@ -2,10 +2,11 @@
     <string name="app_name">CineHub</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="home">Trang chủ</string>
-    <string name="search">Tìm kiếm</string>
-    <string name="ticket">Đặt vé</string>
-    <string name="account">Tài khoản</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="ticket">Book Ticket</string>
+    <string name="your_ticket">Tickets</string>
+    <string name="account">Account</string>
     <string name="btn_continue">Continue</string>
     <string name="content_splash1">All you need is a connected device. Dive into cinematic experiences at your fingertips, from thrilling action to heartfelt stories</string>
     <string name="title_splash1">Watching can be from anywhere</string>
@@ -18,27 +19,32 @@
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="forgot_password">Forgot Password?</string>
-    <string name="don_t_have_account">Don\'t have an account?<font color="#61C8C2"> Sign Up</font></string>
+    <string name="don_t_have_account">Don’t have an account?<font color="#61C8C2"> Sign Up</font></string>
     <string name="continue_with_google">Continue with Google</string>
     <string name="continue_with_apple">Continue with Apple</string>
     <string name="continue_with_facebook">Continue with Facebook</string>
-    <string name="error_input_password">Incorrect password. Please reenter your password and try again. If the problem persists, try resetting your password by click \'Forget Password?\'</string>
+    <string name="error_input_password">
+    Incorrect password. Please reenter your password and try again.
+    If the problem persists, try resetting your password by clicking \'Forgot Password?\'
+    </string>
     <string name="sign_up">Sign Up</string>
     <string name="birthday">Birthday</string>
     <string name="example_example_com">example@example.com</string>
-    <string name="terms">By click the agree and continue button, you\'re agree to Movees\' <font color="#000000"><b>Terms and Service</b></font> and acknowledge the <font color="#000000"><b>Privacy and Policy</b></font></string>
+    <string name="terms">By click the agree and continue button, you’re agree to Movees’ <font color="#000000"><b>Terms and Service</b></font> and acknowledge the <font color="#000000"><b>Privacy and Policy</b></font></string>
     <string name="forgot_password2">Forgot Password</string>
     <string name="forgot_password_content">Input your linked email to your Movees account below, we’ll send you a link</string>
     <string name="hi_nguyen">Hi, Nguyen</string>
-    <string name="let_s_watch_a_movie">Let\'s watch a movie</string>
+    <string name="let_s_watch_a_movie">Let’s watch a movie</string>
     <string name="popular_movie_title">Popular Movie</string>
     <string name="top_movies_title">Top Movies</string>
     <string name="all">All</string>
     <string name="create_profile">Create Profile</string>
+    <string name="edit_profile">Edit Profile</string>
     <string name="profile_name">Profile Name</string>
-    <string name="vd_nguyenabc">VD:NguyenABC....</string>
+    <string name="vd_nguyenabc">Eg: NguyenABC....</string>
     <string name="agree_and_continue">Agree and continue</string>
     <string name="create_and_start">Create and start</string>
+    <string name="save_profile">Save Profile</string>
     <string name="_4_7">4.7</string>
     <string name="_186_mins">186 mins</string>
     <string name="action_adventure_sci_fi">Action, Adventure, Sci-Fi</string>
@@ -57,4 +63,50 @@
     <string name="last_search">Last Search</string>
     <string name="see_all">See All</string>
     <string name="clear_all">Clear All</string>
+    <string name="sorry_we_can_t_find_the_movie">Sorry, we can’t find the movie :’(</string>
+    <string name="you_have_no_ticket">You have no ticket :(</string>
+    <string name="you_have_no_booking_history">You have no booking history :(</string>
+    <string name="you_have_no_notification">You have no notification :(</string>
+    <string name="list_movie">List Movie</string>
+    <string name="notification">Notifications</string>
+    <string name="hint_old_password">Old Password *</string>
+    <string name="hint_new_password">New Password *</string>
+    <string name="hint_confirm_new_password">Confirm New Password *</string>
+    <string name="save_password">Save Password</string>
+
+    <!-- Common -->
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="save">Save</string>
+
+    <!-- Account Screen -->
+    <string name="personal_info">Personal Information</string>
+    <string name="booking_history">Booking History</string>
+    <string name="app_settings">App Settings</string>
+    <string name="logout">Logout</string>
+    <string name="version">Version 1.0.24</string>
+
+    <!-- Dialog Messages -->
+    <string name="logout_dialog_title">Logout</string>
+    <string name="logout_dialog_message">Are you sure you want to log out of your account?</string>
+    <string name="clear_cache_dialog_title">Clear Cache</string>
+    <string name="clear_cache_dialog_message">Are you sure you want to clear the cache?</string>
+
+    <!-- Settings -->
+    <string name="notifications">Notifications</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="language">Language</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="clear_cache">Clear Cache</string>
+    <string name="feedback">Send Feedback</string>
+    <string name="share_app">Share App</string>
+
+    <string-array name="theaters">
+        <item>CGV Vincom Center</item>
+        <item>Lotte Cinema Da Nang</item>
+        <item>BHD Star Cineplex</item>
+        <item>Galaxy Cinema Nguyen Du</item>
+        <item>Cinestar Quoc Thanh</item>
+    </string-array>
 </resources>

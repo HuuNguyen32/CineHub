@@ -1,20 +1,21 @@
 package nhn.ntech.cinehub.presentation.views.details
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.intuit.sdp.R
 import dagger.hilt.android.AndroidEntryPoint
+import nhn.ntech.cinehub.R
 import nhn.ntech.cinehub.data.constant.ConstantApi
 import nhn.ntech.cinehub.data.model.details.DetailMovieResponse
 import nhn.ntech.cinehub.data.model.movies.Result
@@ -22,8 +23,10 @@ import nhn.ntech.cinehub.databinding.FragmentDetailMovieBinding
 import nhn.ntech.cinehub.presentation.adapters.GenreItemDecoration
 import nhn.ntech.cinehub.presentation.adapters.ProductionAdapter
 import nhn.ntech.cinehub.presentation.adapters.TopRateMovieAdapter
+import nhn.ntech.cinehub.presentation.viewmodels.AuthViewModel
 import nhn.ntech.cinehub.presentation.viewmodels.MovieViewModel
-import nhn.ntech.cinehub.presentation.views.home.HomeFragmentDirections
+import nhn.ntech.cinehub.presentation.viewmodels.UserViewModel
+import nhn.ntech.cinehub.presentation.views.home.BookingMovieActivity
 import nhn.ntech.cinehub.utils.OnItemMovieListener
 import kotlin.properties.Delegates
 
@@ -34,8 +37,12 @@ class DetailMovieFragment : Fragment(), OnItemMovieListener {
     private lateinit var adapter: ProductionAdapter
     private lateinit var recommendAdapter: TopRateMovieAdapter
     private val viewModel: MovieViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
+    private val authViewModel: AuthViewModel by viewModels()
     private val args: DetailMovieFragmentArgs by navArgs()
     private var movieId by Delegates.notNull<Int>()
+    private var favorites: List<Int> = emptyList()
+    private lateinit var userId: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,9 +55,37 @@ class DetailMovieFragment : Fragment(), OnItemMovieListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         movieId = args.movieId
+        setFavorite()
         setBack()
         initData()
         setMore()
+        setEventClicks()
+    }
+
+    private fun setEventClicks() {
+        binding.btnBuy.setOnClickListener {
+            val intent = Intent(requireContext(), BookingMovieActivity::class.java).apply {
+                putExtra("movieId", movieId)
+            }
+            startActivity(intent)
+        }
+    }
+
+    private fun setFavorite() {
+        if (authViewModel.isLoggedIn()){
+            userId = userViewModel.currentUid.toString()
+
+            userViewModel.observeFavorites(userId)
+            userViewModel.favoriteMovies.observe(viewLifecycleOwner) { list ->
+                favorites = list.map { it.id }
+                // cập nhật UI icon trái tim
+                if (favorites.contains(movieId)) {
+                    binding.btnLove.setImageResource(R.drawable.ic_heart_red)
+                } else {
+                    binding.btnLove.setImageResource(R.drawable.ic_heart_detail)
+                }
+            }
+        }
     }
 
     private fun setMore() {
@@ -89,8 +124,8 @@ class DetailMovieFragment : Fragment(), OnItemMovieListener {
     }
 
     private fun setRecommendData() {
-        val sidePadding = resources.getDimensionPixelSize(R.dimen._16sdp)
-        val itemSpacing = resources.getDimensionPixelSize(R.dimen._12sdp)
+        val sidePadding = resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._16sdp)
+        val itemSpacing = resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._12sdp)
         recommendAdapter = TopRateMovieAdapter(this)
         binding.rvRecommendation.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
@@ -116,6 +151,7 @@ class DetailMovieFragment : Fragment(), OnItemMovieListener {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun bindData(movie: DetailMovieResponse) {
         val sidePadding = resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._16sdp)
         val itemSpacing = resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._12sdp)
@@ -125,7 +161,7 @@ class DetailMovieFragment : Fragment(), OnItemMovieListener {
         binding.txtRate.text = movie.voteAverage.toString()
         binding.txtCount.text = "("+movie.voteCount.toString()+")"
         binding.txtDuration.text = convertMinuteToTime(movie.runtime)
-        binding.txtLanguage.text = movie.spokenLanguages[0].name
+        binding.txtLanguage.text = movie.spokenLanguages.firstOrNull()?.name ?: "en"
         binding.txtOverviewContent.text = movie.overview
 
         Glide.with(this)
@@ -134,6 +170,16 @@ class DetailMovieFragment : Fragment(), OnItemMovieListener {
             .into(binding.imgPoster)
 
         setProductionData(movie, sidePadding, itemSpacing)
+
+        binding.btnLove.setOnClickListener {
+            val movieId = movie.id
+            if (favorites.contains(movieId)) {
+                userViewModel.removeFavorite(userId, movieId)
+            } else {
+                userViewModel.addFavorite(userId, movieId)
+            }
+
+        }
     }
 
     private fun setProductionData(

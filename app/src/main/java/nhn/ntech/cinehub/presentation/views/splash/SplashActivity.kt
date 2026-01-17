@@ -1,27 +1,31 @@
 package nhn.ntech.cinehub.presentation.views.splash
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import nhn.ntech.cinehub.R
 import nhn.ntech.cinehub.databinding.ActivitySpashBinding
 import nhn.ntech.cinehub.presentation.adapters.SplashAdapter
+import nhn.ntech.cinehub.presentation.viewmodels.AuthViewModel
+import nhn.ntech.cinehub.presentation.views.home.MainActivity
 import nhn.ntech.cinehub.utils.OnNavigationListener
 
 @AndroidEntryPoint
-class SpashActivity : AppCompatActivity(), OnNavigationListener {
+class SplashActivity : AppCompatActivity(), OnNavigationListener {
 
     private lateinit var binding: ActivitySpashBinding
     private lateinit var adapter: SplashAdapter
     private lateinit var viewPager2: ViewPager2
+    private val authViewModel: AuthViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +34,12 @@ class SpashActivity : AppCompatActivity(), OnNavigationListener {
         binding = ActivitySpashBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setPadding()
+
+        if (authViewModel.isLoggedIn()){
+            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            Toast.makeText(this@SplashActivity, "Welcome back!", Toast.LENGTH_SHORT).show()
+            finish()
+        }
 
         // Set adapter for viewpager
         viewPager2 = binding.viewPagerSplash

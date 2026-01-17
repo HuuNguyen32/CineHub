@@ -1,5 +1,7 @@
 package nhn.ntech.cinehub.presentation.views.home
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import nhn.ntech.cinehub.R
 import nhn.ntech.cinehub.data.model.genre.Genre
@@ -22,6 +25,7 @@ import nhn.ntech.cinehub.presentation.adapters.PopularAdapter
 import nhn.ntech.cinehub.presentation.adapters.PopularMovieAdapter
 import nhn.ntech.cinehub.presentation.adapters.TopRateMovieAdapter
 import nhn.ntech.cinehub.presentation.viewmodels.MovieViewModel
+import nhn.ntech.cinehub.presentation.viewmodels.UserViewModel
 import nhn.ntech.cinehub.utils.OnItemMovieListener
 import java.util.Collections.emptyList
 
@@ -36,6 +40,8 @@ class HomeFragment : Fragment(), OnItemMovieListener {
     private var genreList: List<Genre> = emptyList()
     private var topRateList: List<Result> = emptyList()
     private val movieViewModel: MovieViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,12 +59,55 @@ class HomeFragment : Fragment(), OnItemMovieListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initTopBar()
         setPopular()
         initPopular()
         setGenre()
         initGenres()
         setTopRated()
         initTopRated()
+        setSeeAllClicks()
+    }
+
+    private fun setSeeAllClicks() {
+        binding.txtSeeAll.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToMovieFragment("TOP_RATE")
+            findNavController().navigate(action)
+        }
+
+        binding.txtSeeAll2.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToMovieFragment("RECOMMEND")
+            findNavController().navigate(action)
+        }
+
+        binding.btnLove.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToMovieFragment("FAVORITE")
+            findNavController().navigate(action)
+        }
+
+        binding.btnNotification.setOnClickListener {
+            val intent = Intent(requireContext(), NotificationActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun initTopBar() {
+        val uid = userViewModel.currentUid
+        if (uid != null){
+            userViewModel.loadUserProfile(uid)
+            userViewModel.userProfile.observe(viewLifecycleOwner){
+                userProfile ->
+                if (userProfile != null){
+                    Glide.with(requireActivity())
+                        .load(userProfile.photoUrl)
+                        .centerCrop()
+                        .into(binding.imgAvatar)
+
+                    binding.txtHiUsername.text = "Hi, "+userProfile.profileName
+                }
+            }
+        }
     }
 
     private fun setTopRated() {

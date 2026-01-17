@@ -39,6 +39,10 @@ class PopularAdapter(val listener: OnItemMovieListener) : RecyclerView.Adapter<P
         holder.itemView.setOnClickListener {
             listener.onItemClick(item = item)
         }
+
+        holder.imgHeart.setOnClickListener {
+
+        }
     }
 
     override fun getItemCount(): Int = popularList.size

@@ -51,6 +51,9 @@ android {
 }
 
 dependencies {
+    // Cloudinary
+    implementation("com.cloudinary:cloudinary-android:2.3.1")
+
     implementation(libs.firebase.database)
     // Chucker
     debugImplementation("com.github.chuckerteam.chucker:library:4.2.0")
@@ -85,6 +88,9 @@ dependencies {
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:34.7.0"))
     implementation("com.google.firebase:firebase-analytics")
+
+    // Icon
+    implementation("androidx.compose.material:material-icons-extended:1.7.7")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
